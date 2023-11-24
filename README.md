@@ -31,6 +31,7 @@ Vulnerabilities
 •	Use parameterized queries or prepared statements to handle user input.
 •	Implement input validation to ensure that only expected data is accepted.
 •	Regularly conduct security audits and code reviews to identify and fix potential injection points.
+*************************************************************************************
 Steps to Exploit Each Vulnerability
 1. Exploiting Broken Access Control vulnerability:
 •	Steps:
@@ -45,9 +46,7 @@ Steps to Exploit Each Vulnerability
 1.	Attempt to obtain login access as an unidentified/ unrecognized account with “user field” as: admin'; select username from employees where username = 'admin OR '1'='1 
 2.	Attempt to obtain login access as an unidentified/ unrecognized account with “user” field and “password” field as: unknown' OR '1'='1
 3.	Gain access
-
-
-
+*************************************************************************************
 Steps to Fix Each Vulnerability
 1. Fixing Broken Access Control Fix:
 •	Steps:
@@ -61,8 +60,41 @@ Steps to Fix Each Vulnerability
 •	Steps:
 1.	Use parameterized queries or prepared statements to handle user input securely.
 2.	Set search parameter fields for Id as an “int” over “string”
+*************************************************************************************
 Challenges Faced During the Project
 Technical Challenges:
 1.	Adapting Existing Code:
-•	Challenge: Balancing the implementation of security enhancements without disrupting existing functionality.
-•	Resolution: Carefully review and modify code, ensuring that security improvements are seamlessly integrated.
+•	Challenge: 
+1.	Balancing the implementation of security enhancements without disrupting existing functionality.
+2.	Existing code may be complex and tightly integrated, making it challenging to identify and modify the necessary security-critical sections
+•	Resolution: 
+1.	Carefully review and modify code, ensuring that security improvements are seamlessly and incrementally integrated.
+2.	Conduct a comprehensive code review, use automated analysis tools, and refactor gradually. Be mindful of breaking down complex code into smaller, more manageable modules
+2.	Upgrading Password Hashing:
+•	Challenge: transitioning from plaintext passwords to password hashing.
+•	Resolution: Hash existing passwords gradually when users log in – 
+1.	You can hash their plaintext passwords and update the stored hash in the database without requiring all users to reset their passwords immediately. 
+2.	Encourage them to reset their passwords voluntarily. 
+3.	Consider enforcing a periodic password reset policy, encouraging users to update their passwords regularly.
+3.	Identifying SQL Injection Points:
+•	Challenge: Identifying all potential SQL injection points among a large set of codes can be time-consuming.
+•	Resolutions: 
+1.	Always use parameterized queries or prepared statements to handle user input in SQL queries. 
+2.	Validate and sanitize user input by making sure these inputs adhere to expected formats and ranges.
+3.	Use automated tools to scan your code for potential SQL injection vulnerabilities and identify common patterns/ areas that might be susceptible
+4.	Perform static code analysis to identify insecure coding practices with tools like static analyzers to highlight code segments where user input is concatenated into SQL queries without proper sanitization
+5.	Manually review the code to identify more complex injection scenarios that automated tools might miss
+6.	Education and Training: Ensure that your development team is educated on good coding habits and secure coding practices, especially related to SQL injection prevention
+*************************************************************************************
+Non-Technical Challenges:
+Mitigation Challenges -
+1.	Ensuring Comprehensive Fixes:
+•	Challenge: Confirming that all identified vulnerabilities are adequately addressed.
+•	Resolution: Conduct thorough testing and security reviews to verify the effectiveness of implemented fixes.
+2.	Continuous Monitoring:
+•	Challenge: Establishing continuous monitoring and testing to prevent vulnerability reintroduction.
+•	Resolution: Implement automated testing tools and processes, coupled with regular security reviews, to ensure ongoing security.
+3.	End-User Education:
+•	Challenge: Educating end-users about strong passwords and secure practices to ensure ongoing security awareness.
+•	Resolution: Develop user-friendly educational materials and communications to promote secure behavior among end-users.
+
